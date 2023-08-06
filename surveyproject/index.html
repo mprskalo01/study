@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Survey Test</title>
+</head>
+
+<body>
+  <h1 id="title">Survey Form</h1>
+  <p id="description">Short description</p>
+  <form action="" id="survey-form">
+    <label for="name" id="name-label">Enter your name: <input type="text" id="name" required placeholder="John "></label>
+    <label for="email" id="email-label">Enter your email: <input type="email" id="email" required placeholder="john.doe@gmail.com"></label>
+    <label for="number" id="number-label">Enter a number: <input type="number" id="number" min="14" max="100" placeholder="21"></label>
+    <label for="dropdown">Cats or Dogs ?
+      <select id="dropdown" name="cod">
+        <option value="cats">Cats</option>
+        <option value="dogs">Dogs</option>
+      </select>
+    </label>
+    <label for="radio-button1"> Yes
+      <input type="radio" name="radio-button" id="radio-button1" value="yes">
+    </label>
+    <label for="radio-button2"> No
+      <input type="radio" name="radio-button" id="radio-button2" value="no">
+    </label>
+    <label for="checkbox-button1">Button 1<input type="checkbox" name="checkbox-button" id="checkbox-button1" value="1"></label>
+    <label for="checkbox-button2">Button 2<input type="checkbox" name="checkbox-button" id="checkbox-button2" value="2"></label>
+    <label for="checkbox-button3">button 3<input type="checkbox" name="checkbox-button" id="checkbox-button3" value="3"></label>
+    <label for="acomment">Enter additional comments: <textarea name="acomment" id="acomment" cols="30" rows="10"></textarea></label>
+    <input type="submit" id="submit" value="Submit">
+  </form>
+</body>
+
+</html>
