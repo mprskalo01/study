@@ -1,0 +1,329 @@
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+:root {
+  --main-white: #fff;
+  --main-gray: #333;
+  --main-blue: #2b4666;
+  --main-red: #8b2e2e;
+}
+/* Remove default margin */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul[role='list'],
+ol[role='list'] {
+  list-style: none;
+}
+
+/* Set core root defaults */
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+/* Set core body defaults */
+body {
+  min-height: 100vh;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+  font-family: 'Poppins', sans-serif;
+}
+
+h1,
+h2 {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 700;
+  text-align: center;
+}
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+/* Make images easier to work with */
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+ul,
+ol,
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.navbar {
+  overflow: hidden;
+  background-color: var(--main-red);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: auto;
+}
+
+.navbar ul {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.navbar a {
+  color: var(--main-white);
+  text-align: center;
+  padding: 14px;
+  text-decoration: none;
+}
+
+.navbar ul li {
+  font-size: 1.4rem;
+}
+
+.welcome-section {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  place-items: center;
+  place-content: center;
+  text-align: center;
+  background-color: #000;
+  background-image: linear-gradient(60deg, #474545 0%, var(--main-gray) 100%);
+  flex-direction: column;
+}
+
+.welcome-section h1 {
+  color: var(--main-white);
+  font-size: 4rem;
+}
+
+.welcome-section p {
+  font-size: 2rem;
+  color: var(--main-red);
+  font-style: italic;
+}
+
+.projects-section {
+  text-align: center;
+  padding: 10rem 2rem;
+  background: var(--main-blue);
+}
+
+.projects-section-header {
+  max-width: 640px;
+  margin: 0 auto 6rem auto;
+  border-bottom: 0.2rem solid var(--main-white);
+  color: var(--main-white);
+  font-size: 2rem;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-gap: 4rem;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  margin-bottom: 6rem;
+}
+
+.project {
+  background: var(--main-gray);
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  border-radius: 2px;
+}
+
+.project-image {
+  height: calc(100% - 6.8rem);
+  width: 100%;
+  object-fit: cover;
+}
+
+.project-title {
+  font-size: 2rem;
+  padding: 2rem 0.5rem;
+}
+
+.code {
+  color: var(--main-gray);
+  transition: color 0.3s ease-out;
+}
+
+.project:hover .code {
+  color: var(--main-red);
+}
+
+.project-img {
+  height: calc(100% - 6.8rem);
+  width: 100%;
+  object-fit: cover;
+}
+
+.project-title {
+  font-size: 1rem;
+  padding: 2rem 0.5rem;
+  color: var(--main-white);
+}
+
+.btn-show-all {
+  padding: 10px 20px;
+  background-color: var(--main-gray);
+  border: 0;
+  font-size: 1.4rem;
+  color: var(--main-white);
+  transition: background-color ease-in-out 0.4s;
+}
+
+.btn-show-all > i {
+  margin-left: 10px;
+  transform: translateX(0);
+  transition: transform 0.3s ease-out;
+}
+
+.btn-show-all:hover {
+  background-color: var(--main-red);
+  cursor: pointer;
+}
+
+.btn-show-all:hover > i {
+  transform: translateX(2px);
+}
+
+.contact-section {
+  background-color: var(--main-gray);
+  display: flex;
+  text-align: center;
+  height: 90vh;
+  width: 100%;
+  flex-direction: column;
+  place-content: center;
+}
+
+.contact-header {
+  font-size: 4rem;
+  color: var(--main-white);
+}
+.contact-sub {
+  font-size: 1rem;
+  color: var(--main-white);
+  opacity: 0.7;
+  margin-bottom: 2rem;
+  font-style: italic;
+}
+
+.socials {
+  display: flex;
+  place-items: center;
+  justify-content: center;
+  gap: 4rem;
+}
+
+.socials a {
+  color: var(--main-white);
+  font-size: 1.4rem;
+}
+
+.footer {
+  border-top: 2px solid var(--main-red);
+  width: 100%;
+  height: auto;
+  display: flex;
+  background-color: var(--main-gray);
+  justify-content: space-around;
+  padding: 2rem;
+}
+
+.footer,
+.footer a {
+  color: var(--main-white);
+  font-size: 1rem;
+}
+
+/* 1200px / 16px = 75em */
+@media (max-width: 75em) {
+  html {
+    font-size: 60%;
+  }
+}
+
+/* 980px / 16px = 61.25em */
+@media (max-width: 61.25em) {
+  html {
+    font-size: 58%;
+  }
+}
+
+/* 460px / 16px = 28.75em */
+@media (max-width: 28.75em) {
+  html {
+    font-size: 55%;
+  }
+  .nav {
+    justify-content: center;
+  }
+
+  .nav-list {
+    margin: 0 1rem;
+  }
+  .projects-section-header {
+    font-size: 4rem;
+  }
+  .contact-section-header > h2 {
+    font-size: 4rem;
+  }
+  footer {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+@media (max-width: 30.625em) {
+  .projects-section {
+    padding: 6rem 1rem;
+  }
+
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+}
