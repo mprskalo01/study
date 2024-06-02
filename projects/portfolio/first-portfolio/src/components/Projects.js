@@ -3,6 +3,7 @@ import { ProjectCard } from "./ProjectCards";
 import projImg1 from "../assets/img/project-img1.png";
 import projImg2 from "../assets/img/project-img2.png";
 import projImg3 from "../assets/img/project-img3.png";
+import TrackVisibility from "react-on-screen";
 
 export const Projects = () => {
   const projects = [
@@ -15,12 +16,23 @@ export const Projects = () => {
       <Container>
         <Row>
           <Col size={12}>
-            <h2>Projects</h2>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda
-              harum laboriosam natus tempora, delectus reprehenderit sapiente
-              omnis quisquam veritatis sit necessitatibus temporibus.
-            </p>
+            <TrackVisibility>
+              {({ isVisible }) => (
+                <div
+                  className={
+                    isVisible ? "animate__animated animate__slideInUp" : ""
+                  }
+                >
+                  <h2>Projects</h2>
+                  <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Assumenda harum laboriosam natus tempora, delectus
+                    reprehenderit sapiente omnis quisquam veritatis sit
+                    necessitatibus temporibus.
+                  </p>
+                </div>
+              )}
+            </TrackVisibility>
             <Tab.Container id='projects-tabs' defaultActiveKey='first'>
               <Nav
                 variant='pills'
