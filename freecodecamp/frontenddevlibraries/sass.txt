@@ -1,0 +1,118 @@
+Sass Basics
+
+    Variables
+        Declaring variables: $variable-name: value;
+        Using variables: color: $primary-color;
+
+    Nesting
+        Nesting selectors inside one another for better organization.
+        Example:
+
+        scss
+
+    .parent {
+      .child {
+        color: blue;
+      }
+    }
+
+Partials and Import
+
+    Creating partials with _filename.scss.
+    Importing partials with @import 'filename';.
+
+Mixins
+
+    Defining mixins for reusable blocks of code: @mixin mixin-name { ... }
+    Including mixins in styles: @include mixin-name;
+
+Inheritance
+
+    Using @extend to inherit styles from another selector.
+    Example:
+
+    scss
+
+        .button {
+          border: 1px solid black;
+        }
+        .primary-button {
+          @extend .button;
+          background-color: blue;
+        }
+
+    Operators
+        Using mathematical operators: +, -, *, /, %
+        Example: width: $base-width / 2;
+
+Advanced Sass
+
+    Functions
+        Defining custom functions: @function function-name($arg) { ... }
+        Example:
+
+        scss
+
+    @function multiply($number1, $number2) {
+      @return $number1 * $number2;
+    }
+    width: multiply(10px, 2);
+
+Control Directives
+
+    Conditional statements: @if, @else if, @else
+    Loops: @for, @each, @while
+    Example:
+
+    scss
+
+    @for $i from 1 through 3 {
+      .item-#{$i} {
+        width: 20px * $i;
+      }
+    }
+
+Built-in Functions
+
+    Commonly used functions: lighten(), darken(), percentage(), round(), floor(), etc.
+    Example: color: lighten($primary-color, 20%);
+
+Interpolation
+
+    Inserting variables into selectors or property names: #{$variable}
+    Example:
+
+    scss
+
+    $name: 'sidebar';
+    .#{$name}-left {
+      width: 300px;
+    }
+
+Modules (new in Dart Sass)
+
+    Using @use and @forward to import and share Sass files.
+    Example:
+
+    scss
+
+        // _colors.scss
+        $primary-color: blue;
+        @forward 'colors';
+
+        // main.scss
+        @use 'colors';
+        body {
+          color: colors.$primary-color;
+        }
+
+Best Practices
+
+    Organizing Stylesheets
+        Structure your project with partials and directories for better maintainability.
+
+    Avoiding Deep Nesting
+        Limit nesting to three levels to prevent overly specific selectors and maintain readability.
+
+    Using Variables and Mixins Wisely
+        Leverage variables for consistent theming and mixins for reusable patterns.
