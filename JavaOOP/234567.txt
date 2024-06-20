@@ -1,0 +1,204 @@
+import java.util.Date;
+
+public class Vehicle {
+    // Privatne varijable članovi klase
+    private String manufacturer;
+    private String model;
+    private Date manufacturerYear;
+    private double rentPricePerDay;
+
+    // Konstruktor za inicijalizaciju objekta
+    public Vehicle(String manufacturer, String model, Date manufacturerYear, double rentPricePerDay) {
+        this.manufacturer = manufacturer;
+        this.model = model;
+        this.manufacturerYear = manufacturerYear;
+        this.rentPricePerDay = rentPricePerDay;
+    }
+
+    // Get metode za pristupanje privatnim varijablama
+    public String getManufacturer() {
+        return manufacturer;
+    }
+
+    public String getModel() {
+        return model;
+    }
+
+    public Date getManufacturerYear() {
+        return manufacturerYear;
+    }
+
+    public double getRentPricePerDay() {
+        return rentPricePerDay;
+    }
+
+    // Set metode za postavljanje vrijednosti privatnih varijabli
+    public void setManufacturer(String manufacturer) {
+        this.manufacturer = manufacturer;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
+    }
+
+    public void setManufacturerYear(Date manufacturerYear) {
+        this.manufacturerYear = manufacturerYear;
+    }
+
+    public void setRentPricePerDay(double rentPricePerDay) {
+        this.rentPricePerDay = rentPricePerDay;
+    }
+
+    // Metoda za izračun cijene najma ovisno o broju dana i godini proizvodnje
+    public double rentingPrice(int days) {
+        double price = rentPricePerDay * days;
+        
+        // Provjerava se godina proizvodnje
+        if (manufacturerYear.getYear() < (new Date().getYear() - 3)) {
+            // Ako je vozilo starije od 3 godine, dodaje se popust od 20%
+            price -= (price * 0.2);
+        }
+        
+        return price;
+    }
+    
+    // Metoda za izračun neto zarade ovisno o vrsti vozila i broju dana najma
+    public double myEarnings(int days) {
+        double earningsPercentage;
+        
+        if (this instanceof Car) {
+            // Ako je vozilo automobil
+            if (days < 3) {
+                earningsPercentage = 0.3; // 30% zarade
+            } else {
+                earningsPercentage = 0.4; // 40% zarade
+            }
+        } else if (this instanceof Motorcycle) {
+            // Ako je vozilo motocikl
+            if (days < 3) {
+                earningsPercentage = 0.35; // 35% zarade
+            } else {
+                earningsPercentage = 0.45; // 45% zarade
+            }
+        } else {
+            // Ako vozilo nije ni automobil ni motocikl
+            return 0.0;
+        }
+        
+        return rentingPrice(days) * earningsPercentage;
+    }
+
+    // Metoda za prikaz informacija o vozilu u obliku stringa
+    @Override
+    public String toString() {
+        return "Proizvođač: " + manufacturer + ", Model: " + model + ", Godina proizvodnje: " +
+                manufacturerYear + ", Cijena najma po danu: " + rentPricePerDay + " kn";
+    }
+}
+
+class Motorcycle extends Vehicle {
+    // Dodatni atributi za motocikl
+    private int engineDisplacement;
+    private int licenseCategory;
+    private boolean needLicense;
+
+    // Konstruktor za inicijalizaciju objekta motocikla
+    public Motorcycle(String manufacturer, String model, Date manufacturerYear, double rentPricePerDay,
+                      int engineDisplacement, int licenseCategory, boolean needLicense) {
+        super(manufacturer, model, manufacturerYear, rentPricePerDay);
+        this.engineDisplacement = engineDisplacement;
+        this.licenseCategory = licenseCategory;
+        this.needLicense = needLicense;
+    }
+
+    // Getteri i setteri za dodatne atribute motocikla
+    public int getEngineDisplacement() {
+        return engineDisplacement;
+    }
+
+    public void setEngineDisplacement(int engineDisplacement) {
+        this.engineDisplacement = engineDisplacement;
+    }
+
+    public int getLicenseCategory() {
+        return licenseCategory;
+    }
+
+    public void setLicenseCategory(int licenseCategory) {
+        this.licenseCategory = licenseCategory;
+    }
+
+    public boolean isNeedLicense() {
+        return needLicense;
+    }
+
+    public void setNeedLicense(boolean needLicense) {
+        this.needLicense = needLicense;
+    }
+
+    // Prikaz informacija o motociklu
+    @Override
+    public String toString() {
+        return super.toString() + ", Zapremnina motora: " + engineDisplacement +
+                " ccm, Kategorija vozačke dozvole: " + licenseCategory +
+                ", Potrebna vozačka dozvola: " + needLicense;
+    }
+}
+
+class Car extends Vehicle {
+    // Dodatni atributi za automobil
+    private int numberOfSeats;
+    private int horsePower;
+
+    // Konstruktor za inicijalizaciju objekta automobila
+    public Car(String manufacturer, String model, Date manufacturerYear, double rentPricePerDay,
+               int numberOfSeats, int horsePower) {
+        super(manufacturer, model, manufacturerYear, rentPricePerDay);
+        this.numberOfSeats = numberOfSeats;
+        this.horsePower = horsePower;
+    }
+
+    // Getteri i setteri za dodatne atribute automobila
+    public int getNumberOfSeats() {
+        return numberOfSeats;
+    }
+
+    public void setNumberOfSeats(int numberOfSeats) {
+        this.numberOfSeats = numberOfSeats;
+    }
+
+    public int getHorsePower() {
+        return horsePower;
+    }
+
+    public void setHorsePower(int horsePower) {
+        this.horsePower = horsePower;
+    }
+
+    // Prikaz informacija o automobilu
+    @Override
+    public String toString() {
+        return super.toString() + ", Broj sjedala: " + numberOfSeats +
+                ", Snaga motora: " + horsePower + " KS";
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Date manufacturerDate = new Date(120, 0, 1); // Godina proizvodnje 2020 (broj 120 predstavlja godinu)
+
+        Motorcycle motorcycle = new Motorcycle("Honda", "CBR", manufacturerDate, 70.0,
+                500, 2, true);
+
+        Car car = new Car("Toyota", "Camry", manufacturerDate, 80.0,
+                5, 150);
+
+        int rentalDays = 5;
+
+        System.out.println("Cijena najma motocikla za " + rentalDays + " dana: " + motorcycle.rentingPrice(rentalDays));
+        System.out.println("Neto zarada od najma motocikla za " + rentalDays + " dana: " + motorcycle.myEarnings(rentalDays));
+
+        System.out.println("Cijena najma automobila za " + rentalDays + " dana: " + car.rentingPrice(rentalDays));
+        System.out.println("Neto zarada od najma automobila za " + rentalDays + " dana: " + car.myEarnings(rentalDays));
+    }
+}
